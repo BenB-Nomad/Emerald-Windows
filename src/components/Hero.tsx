@@ -7,10 +7,10 @@ const Hero = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   
   const heroImages = [
-    '/images/tenweb_media_rpsjpec2h.webp',
-    '/images/pexels-curtis-adams-1694007-3773582.jpg',
-    '/images/pexels-heyho-8143711.jpg',
-    '/images/tenweb_media_sirpbq38j.webp'
+    '/images/cropped/tenweb_media_rpsjpec2h.webp',
+    '/images/cropped/pexels-curtis-adams-1694007-3773582.jpg',
+    '/images/cropped/pexels-heyho-8143711.jpg',
+    '/images/cropped/tenweb_media_sirpbq38j.webp'
   ]
 
   // Preload images
@@ -26,24 +26,29 @@ const Hero = () => {
       setCurrentImageIndex((prevIndex) => 
         prevIndex === heroImages.length - 1 ? 0 : prevIndex + 1
       )
-    }, 4000)
+    }, 5000) // Increased to 5 seconds for smoother experience
 
     return () => clearInterval(interval)
   }, [heroImages.length])
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
+      {/* Background Images with Smooth Transitions */}
       <div className="absolute inset-0 z-0">
-        <div 
-          className="w-full h-full bg-cover bg-center bg-no-repeat transition-all duration-1000 ease-in-out"
-          style={{
-            backgroundImage: `url(${heroImages[currentImageIndex]})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat'
-          }}
-        />
+        {heroImages.map((image, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out ${
+              index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{
+              backgroundImage: `url(${image})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+        ))}
       </div>
 
       {/* Content */}
@@ -61,7 +66,7 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6"
           >
-            <Star className="w-4 h-4 text-[#5a8a6f]" />
+            <Star className="w-4 h-4 text-emerald-600" />
             <span className="text-sm font-medium">40+ Years of Excellence</span>
           </motion.div>
 
@@ -72,8 +77,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 leading-tight text-white"
           >
-            The Home of{' '}
-            <span className="text-white">Good Craftsmanship</span>
+            The Home of Good Craftsmanship
           </motion.h1>
 
           {/* Subtitle */}
@@ -104,7 +108,7 @@ const Hero = () => {
             
             <Link 
               to="/contact"
-              className="btn-secondary text-lg px-8 py-4 text-white border-white hover:bg-white hover:text-[#1a4d2e]"
+              className="btn-secondary text-lg px-8 py-4 text-white border-white hover:bg-white hover:text-emerald-800"
             >
               Contact Us
             </Link>
@@ -118,15 +122,15 @@ const Hero = () => {
             className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto"
           >
             <div className="text-center">
-              <div className="text-3xl font-bold text-[#5a8a6f] mb-2">30+</div>
+              <div className="text-3xl font-bold text-emerald-600 mb-2">40+</div>
               <div className="text-white">Years Experience</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-[#5a8a6f] mb-2">200k+</div>
+              <div className="text-3xl font-bold text-emerald-600 mb-2">20k+</div>
               <div className="text-white">Homes Transformed</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-[#5a8a6f] mb-2">100%</div>
+              <div className="text-3xl font-bold text-emerald-600 mb-2">100%</div>
               <div className="text-white">Completion Rate</div>
             </div>
           </motion.div>
