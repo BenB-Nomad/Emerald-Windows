@@ -9,10 +9,10 @@ const Hero = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   
   const heroImages = [
-    '/images/hero-cropped/tenweb_media_rpsjpec2h.webp',
-    '/images/hero-cropped/pexels-curtis-adams-1694007-3773582.jpg',
-    '/images/hero-cropped/pexels-heyho-8143711.jpg',
-    '/images/hero-cropped/tenweb_media_sirpbq38j.webp'
+    '/images/tenweb_media_rpsjpec2h.webp',
+    '/images/pexels-curtis-adams-1694007-3773582.jpg',
+    '/images/pexels-heyho-8143711.jpg',
+    '/images/tenweb_media_sirpbq38j.webp'
   ]
 
   // Preload images
